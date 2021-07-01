@@ -2,7 +2,8 @@ from json import JSONDecodeError
 
 import requests
 
-from .accessors.api import *
+from .accessors.api import ArtistAccessor, AlbumsAccessor, TracksAccessor, LibraryAccessor, \
+        UploadsAccessor, FavoritesAccessor, PlaylistAccessor, RadioAccessor
 
 
 class Funkwhale:
@@ -19,6 +20,7 @@ class Funkwhale:
     uploads = UploadsAccessor()
     favourites = FavoritesAccessor()
     playlists = PlaylistAccessor()
+    radios = RadioAccessor()
 
     def __init__(self, base_url):
         self.base_url = base_url

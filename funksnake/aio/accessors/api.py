@@ -1,7 +1,8 @@
 from datetime import datetime
 
 from funksnake.enums import Visibility
-from .base import *
+from .base import ApiAccessor, ListAccessor, GetAccessor, ListLibrariesAccessor, NewAccessor, \
+    UpdateAccessor, DeleteAccessor
 
 
 # ==================== #
@@ -139,4 +140,25 @@ class PlaylistAccessor(ListAccessor, GetAccessor, NewAccessor, UpdateAccessor, D
     async def clear_tracks(self, identifier):
         return await self.session.request(
             "delete", self._endpoint(identifier, "clear")
+        )
+
+
+class RadioAccessor(ApiAccessor):
+
+    url = "/api/v1/radios/radios/"
+
+    async def list(self):
+        # Implement list manually since it's different to a standard list
+        return await self.session.request(
+            "get", self._endpoint("radios")
+        )
+
+    async def session(self):
+        return await self.session.request(
+            "post", self._endpoint("sessions")
+        )
+
+    async def track(self):
+        return await self.session.request(
+            "post", self._endpoint("tracks")
         )

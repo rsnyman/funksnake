@@ -2,7 +2,8 @@ from json import JSONDecodeError
 
 import aiohttp
 
-from .accessors.api import *
+from .accessors.api import ArtistAccessor, AlbumsAccessor, TracksAccessor, LibraryAccessor, \
+        UploadsAccessor, FavoritesAccessor, PlaylistAccessor, RadioAccessor
 
 
 class Funkwhale:
@@ -14,6 +15,7 @@ class Funkwhale:
     uploads = UploadsAccessor()
     favourites = FavoritesAccessor()
     playlists = PlaylistAccessor()
+    radios = RadioAccessor
 
     token: str
     session: aiohttp.ClientSession
